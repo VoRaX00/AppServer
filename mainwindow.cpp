@@ -39,3 +39,10 @@ void MainWindow::on_btnClear_clicked()
     ui->lstConsole->clear();
 }
 
+
+void MainWindow::on_btnSendAll_clicked()
+{
+    auto message = ui->lnMessage->text().trimmed();
+    server->sendToAll(message);
+}
+

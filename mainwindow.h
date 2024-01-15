@@ -22,6 +22,8 @@ private slots:
 
     void on_btnClear_clicked();
 
+    void on_btnSendAll_clicked();
+
 private:
     Ui::MainWindow *ui;
     TCPServer* server;
