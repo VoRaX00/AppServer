@@ -21,6 +21,8 @@ void MainWindow::on_pushButton_clicked()
         int port = ui->spnServerPort->value();
         server = new TCPServer(port);
         connect(server, SIGNAL(newClientConnected()), this, SLOT(newClientConnected()));
+        connect(server, SIGNAL(clientDisconnect()), this, SLOT(clientDisconnected()));
+        connect(server, SIGNAL(dataReceived(QString)), this, SLOT(clientDataReceived(QString)));
     }
 
     auto state = (server->isStareted()) ? "1" : "0";
@@ -33,12 +35,20 @@ void MainWindow::newClientConnected()
     ui->lstConsole->addItem("New Client connected");
 }
 
+void MainWindow::clientDisconnected()
+{
+    ui->lstConsole->addItem("Client Disconnected");
+}
+
+void MainWindow::clientDataReceived(QString message)
+{
+    ui->lstConsole->addItem(message);
+}
 
 void MainWindow::on_btnClear_clicked()
 {
     ui->lstConsole->clear();
 }
-
 
 void MainWindow::on_btnSendAll_clicked()
 {

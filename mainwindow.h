@@ -18,11 +18,13 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void newClientConnected();
-
     void on_btnClear_clicked();
-
     void on_btnSendAll_clicked();
+
+    void newClientConnected();
+    void clientDisconnected();
+    void clientDataReceived(QString message);
+
 
 private:
     Ui::MainWindow *ui;
